@@ -1,0 +1,14 @@
+{
+  "name": "kirugan/scribe-client",
+  "description": "Simple PHP wrapper to work with facebook scribe",
+  "license": "Apache-2.0",
+  "require": {
+    "apache/thrift": "0.10.*",
+    "psr/log": "1.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kirugan\\Scribe\\": "src/"
+    }
+  }
+}
