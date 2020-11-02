@@ -39,9 +39,10 @@ class Logger extends \Psr\Log\AbstractLogger
             $this->transport->open();
         }
 
-        // todo if obj cast to string
+        // todo if message is an obj then cast to string
 
         $category = $this->getCategory($level);
+        // how to handle failure?
         $this->client->Log([
             new LogEntry(compact('category', 'message'))
         ]);
@@ -49,7 +50,7 @@ class Logger extends \Psr\Log\AbstractLogger
 
     private function assertLevel($level)
     {
-        if (in_array($level, [
+        if (!in_array($level, [
             LogLevel::EMERGENCY,
             LogLevel::ALERT,
             LogLevel::CRITICAL,
@@ -61,7 +62,7 @@ class Logger extends \Psr\Log\AbstractLogger
         ])) {
             // todo do we need to check stringable interface on level ?
             throw new InvalidArgumentException(sprintf(
-                'unsupported error level %s',
+                "unsupported log level '%s'",
                 $level
             ));
         }
